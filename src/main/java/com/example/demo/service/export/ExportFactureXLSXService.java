@@ -41,6 +41,10 @@ public class ExportFactureXLSXService {
 	ExportClientXLSXService exportClientXLSXService;
 	
 	
+	/**
+	 * @param fileOutputStream
+	 * @throws IOException
+	 */
 	public void exportAll(OutputStream fileOutputStream) throws IOException {
 		
 		List<ClientDto> toutlesClient = clientService.findAllClients();
@@ -67,8 +71,9 @@ public class ExportFactureXLSXService {
     		cellDateDeNaissanceValue.setCellValue(c.getDateDeNaissance().toString());
 
     		for(FactureDto facture:touteLesFactures) {
+    			if(c.equals(facture.getClient())) {
     			//j'ajoute c.getId() dans le nommage afain d'eviter un illigal argument exception
-    			sheet = workbook.createSheet("Facture n°"+facture.getId()+" "+c.getId());
+    			sheet = workbook.createSheet("Facture n°"+facture.getId());
             	headerRow = sheet.createRow(0);
         		Cell cellDesignationName = headerRow.createCell(0);
         		cellDesignationName.setCellValue("Désignation");
@@ -86,7 +91,7 @@ public class ExportFactureXLSXService {
             		Cell cellPrixValue = headerRow.createCell(2);
             		cellPrixValue.setCellValue(lignes.getArticle().getPrix());
             		i++;
-        		}
+        		}}
     			
     		}	
     	}
