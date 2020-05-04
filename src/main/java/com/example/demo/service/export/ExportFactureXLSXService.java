@@ -98,6 +98,40 @@ public class ExportFactureXLSXService {
     	workbook.write(fileOutputStream);
     	workbook.close();
     	}
+	
+	public void exportById(OutputStream fileOutputStream,Long id) throws IOException {
+		List<FactureDto> touteLesFactures = factureService.findAllFactures();
+    	Workbook workbook = new XSSFWorkbook();
+    	Sheet sheet;
+    	Row headerRow;
+    	for(FactureDto facture:touteLesFactures) {
+			if(facture.getClient().getId()==id) {
+			//j'ajoute c.getId() dans le nommage afain d'eviter un illigal argument exception
+			sheet = workbook.createSheet("Facture n°"+facture.getId());
+        	headerRow = sheet.createRow(0);
+    		Cell cellDesignationName = headerRow.createCell(0);
+    		cellDesignationName.setCellValue("Désignation");
+    		Cell cellQuantiteName = headerRow.createCell(1);
+    		cellQuantiteName.setCellValue("Quantité");
+    		Cell cellPrixName = headerRow.createCell(2);
+    		cellPrixName.setCellValue("Prix unitaire");
+    		int i=1;
+    		for(LigneFactureDto lignes:facture.getLigneFactures()) {
+    			headerRow = sheet.createRow(i);
+    			Cell cellDesignationValue = headerRow.createCell(0);
+    			cellDesignationValue.setCellValue(lignes.getArticle().getLibelle());
+        		Cell cellQuantiteValue = headerRow.createCell(1);
+        		cellQuantiteValue.setCellValue(lignes.getQuantite());
+        		Cell cellPrixValue = headerRow.createCell(2);
+        		cellPrixValue.setCellValue(lignes.getArticle().getPrix());
+        		i++;
+    		}}
+			
+		}
+    	workbook.write(fileOutputStream);
+    	workbook.close();
+		
+	}
     	
     	
        }
