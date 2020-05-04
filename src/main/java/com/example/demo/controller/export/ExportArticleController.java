@@ -52,6 +52,13 @@ public class ExportArticleController {
     }
 
 
+    /**
+     * Export des articles au format Excel, déclenché sur l'url http://.../export/articles/xlsx
+     * 
+     * @param request : objet reprensantant la requête http
+     * @param response : objet reprensantant la réponse http
+     * @throws IOException : l'exception levée en cas d'erreur
+     */
     @GetMapping("/articles/xlsx")
     public void articlesXlsx(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");
