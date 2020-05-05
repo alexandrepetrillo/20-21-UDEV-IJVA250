@@ -32,7 +32,13 @@ public class ClientService {
         return clientRepository
                 .findAll()
                 .stream()
-                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), Period.between(c.getDateNaissance(), LocalDate.now()).getYears()))
+                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), getAge(c.getDateNaissance())))
                 .collect(toList());
+    }
+    
+    public Integer getAge(LocalDate dateNaissaice) {
+    	LocalDate now = LocalDate.now();
+    	Period diff = Period.between(dateNaissaice, now);
+    	return diff.getYears();
     }
 }

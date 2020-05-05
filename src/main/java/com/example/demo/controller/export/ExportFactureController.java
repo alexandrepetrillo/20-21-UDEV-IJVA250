@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.service.export.ExportClientCSV;
@@ -42,5 +43,19 @@ public class ExportFactureController {
         
         OutputStream outputStream = response.getOutputStream();
         exportFactureXLSX.exportAll(outputStream);
+    }
+    
+    @GetMapping("/clients/{id}/factures/xlsx")
+    public void factureXSLX(HttpServletRequest request, HttpServletResponse response,@PathVariable Long id) throws IOException {
+        // positionne de metadata sur la réponse afin d'informer le navigateur que la réponse correspond à un fichier téléchargeable.
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
+
+        // Le writter est un objet provenant de la response dans lequel on va pouvoir écrire pour générer le contenu de l'export CSV.
+        //PrintWriter writer = response.getWriter();
+        //exportArticleCSV.exportAll(writer);
+        System.out.println(id);
+        OutputStream outputStream = response.getOutputStream();
+        exportFactureXLSX.exportONE(outputStream, id);
     }
 }
