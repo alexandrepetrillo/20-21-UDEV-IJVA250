@@ -1,24 +1,29 @@
 package com.example.demo.service.export;
 
-import com.example.demo.service.ArticleService;
+import com.example.demo.entity.Article;
+import com.example.demo.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
+import java.util.List;
 
+@Service
 public class ExportArticleCSV {
 
     @Autowired
-    private ArticleService articleService;
+    private ArticleRepository articleRepository;
 
     public void exportAll(PrintWriter writer) {
-
-        //génération d'un fichier CSV exemples avec 2 colonnes et 4 lignes
+        // Get a list of articles
+        List<Article> articles= articleRepository.findAll();
         writer.println("Libelle;Prix");
-        writer.println("a1;p1");
-        writer.println("a2;p2");
-        writer.println("a3;p3");
 
-        // TODO remplacer par les vrais articles de la base de données, tips : rechercher tous les articles : articleService.findAll();
+        // Filled the cells with LIBELLE & PRIX
+        for (Article article : articles){
+          writer.println(article.getLibelle() + ";" + article.getPrix());
+        }
+
     }
 
 }
