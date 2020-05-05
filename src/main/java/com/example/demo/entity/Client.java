@@ -54,4 +54,11 @@ public class Client {
         this.dateNaissance = dateNaissance;
     }
 
+    public int getAge() {
+        LocalDate today = LocalDate.now();
+        LocalDate dateNaissance = getDateNaissance();
+
+        int age = dateNaissance.getYear() - today.getYear();
+        return age;
+    }
 }

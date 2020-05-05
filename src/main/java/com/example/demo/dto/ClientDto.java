@@ -49,5 +49,4 @@ public class ClientDto {
     public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
-
 }

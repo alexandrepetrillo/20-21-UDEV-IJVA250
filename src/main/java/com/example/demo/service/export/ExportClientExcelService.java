@@ -2,6 +2,7 @@ package com.example.demo.service.export;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.List;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -62,6 +63,7 @@ public class ExportClientExcelService {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(client.getNom());
             row.createCell(1).setCellValue(client.getPrenom());
+            row.createCell(2).setCellValue(LocalDate.now().getYear() - client.getDateNaissance().getYear());
         }
 
         // Resize all columns to fit content size
