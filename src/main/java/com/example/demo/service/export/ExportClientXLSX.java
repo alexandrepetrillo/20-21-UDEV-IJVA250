@@ -100,6 +100,9 @@ public class ExportClientXLSX {
         	CellUtil.setCellStyleProperties(cellA, properties);  
         	i++;
 		}
+    	sheet.autoSizeColumn(0);
+    	sheet.autoSizeColumn(1);
+    	sheet.autoSizeColumn(2);
     	
     	
     	workbook.write(outputStream);

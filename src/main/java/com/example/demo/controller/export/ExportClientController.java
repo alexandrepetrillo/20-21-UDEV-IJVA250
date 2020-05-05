@@ -44,7 +44,7 @@ public class ExportClientController {
     }
     
     @GetMapping("/clients/xlsx")
-    public void articlesXSLX(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void clientsXSLX(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // positionne de metadata sur la réponse afin d'informer le navigateur que la réponse correspond à un fichier téléchargeable.
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
@@ -56,4 +56,5 @@ public class ExportClientController {
         OutputStream outputStream = response.getOutputStream();
         exportClientXLSX.exportAll(outputStream);
     }
+    
 }

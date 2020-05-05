@@ -44,7 +44,8 @@ public class ExportArticleXLSX {
         	cellP.setCellValue(articleDto.prix);
         	i++;
 		}
-    	
+    	sheet.autoSizeColumn(0);
+    	sheet.autoSizeColumn(1);
     	
     	workbook.write(outputStream);
     	workbook.close();
