@@ -63,7 +63,7 @@ public class ExportClientExcelService {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(client.getNom());
             row.createCell(1).setCellValue(client.getPrenom());
-            row.createCell(2).setCellValue(LocalDate.now().getYear() - client.getDateNaissance().getYear());
+            row.createCell(2).setCellValue(LocalDate.now().getYear() - client.getDateNaissance().getYear() - 1);
         }
 
         // Resize all columns to fit content size
