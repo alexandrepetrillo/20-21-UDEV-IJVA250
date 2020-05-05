@@ -2,9 +2,8 @@ package com.example.demo.service.export;
 
 import com.example.demo.entity.Article;
 import com.example.demo.repository.ArticleRepository;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class ExportArticlePDFService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public void exportAll(OutputStream outputStream) throws IOException, DocumentException {
+    public void exportAll(OutputStream outputStream) throws DocumentException {
         List<Article> allArticles = articleRepository.findAll();
 
         // itext
@@ -31,8 +30,8 @@ public class ExportArticlePDFService {
         document.add(new Paragraph(line));
 
         PdfPTable table = new PdfPTable(2);
-        table.addCell("Libellé");
-        table.addCell("Prix");
+        table.addCell(new PdfPCell(new Phrase("Libelle", new Font(Font.FontFamily.COURIER))));
+        table.addCell(new PdfPCell(new Phrase("Prix")));
 
         for (Article article : allArticles) {
             table.addCell(article.getLibelle());
