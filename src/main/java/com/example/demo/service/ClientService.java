@@ -9,6 +9,8 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+import java.io.PrintWriter;
+
 /**
  * Service contenant les actions métiers liées aux clients.
  */
@@ -27,7 +29,7 @@ public class ClientService {
         return clientRepository
                 .findAll()
                 .stream()
-                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom()))
+                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), c.getDateNaissance()))
                 .collect(toList());
     }
 }

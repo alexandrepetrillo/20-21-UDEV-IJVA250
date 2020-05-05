@@ -1,7 +1,7 @@
 package com.example.demo.controller.export;
 
-import com.example.demo.service.export.ExportArticleCSVService;
-import com.example.demo.service.export.ExportArticleXLSXService;
+import com.example.demo.service.export.ExportClientCSVService;
+import com.example.demo.service.export.ExportClientXLSXService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,50 +15,52 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 /**
- * Controller pour réaliser l'export des articles.
+ * Controller pour réaliser l'export des clients.
  */
 @Controller
-@RequestMapping("export")
-public class ExportArticleController {
+@RequestMapping("export")	
+public class ExportClientController {
 
     @Autowired
-    private ExportArticleCSVService exportArticleCSVService;
+    private ExportClientCSVService exportClientCSVService;
     
     @Autowired
-    private ExportArticleXLSXService exportArticleXLSXService;
+    private ExportClientXLSXService exportClientXLSXService;
 
     /**
-     * Export des articles au format CSV, déclenché sur l'url http://.../export/articles/csv
+     * Export des clients au format CSV, déclenché sur l'url http://.../export/clients/csv
      *
      * @param request  objet reprensantant la requête http
      * @param response objet reprensantant la réponse http
      */
-    @GetMapping("/articles/csv")
-    public void articlesCSV(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/clients/csv")
+    public void clientsCSV(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // positionne de metadata sur la réponse afin d'informer le navigateur que la réponse correspond à un fichier téléchargeable.
         response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.csv\"");
+        //response.setHeader("Content-Disposition", "attachment; filename=\"export-clients.csv\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-clients-avec-age.csv\"");
 
         // Le writter est un objet provenant de la response dans lequel on va pouvoir écrire pour générer le contenu de l'export CSV.
         PrintWriter writer = response.getWriter();
 
-        exportArticleCSVService.exportAll(writer);
+        //exportClientCSVService.exportAll(writer);
+        exportClientCSVService.exportAllWithAge(writer);
     }
     
     /**
-     * Export des articles au format XLSX, déclenché sur l'url http://.../export/articles/xlsx
+     * Export des articles au format XLSX, déclenché sur l'url http://.../export/clients/xlsx
      *
      * @param request  objet reprensantant la requête http
      * @param response objet reprensantant la réponse http
      */
-    @GetMapping("/articles/xlsx")
+    @GetMapping("/clients/xlsx")
     public void articlesXLSX(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-clients.xlsx\"");
 
         OutputStream outputStream = response.getOutputStream();
         
-        exportArticleXLSXService.exportAll(outputStream);
+        exportClientXLSXService.exportAll(outputStream);
     }
 
 }
