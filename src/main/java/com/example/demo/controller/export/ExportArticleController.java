@@ -1,6 +1,8 @@
 package com.example.demo.controller.export;
 
 import com.example.demo.service.export.ExportArticleCSV;
+import com.example.demo.service.export.ExportArticleXlsx;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 /**
@@ -20,6 +23,9 @@ public class ExportArticleController {
 
     @Autowired
     private ExportArticleCSV exportArticleCSV;
+    
+    @Autowired
+    private ExportArticleXlsx exportArticleXlsx;
 
     /**
      * Export des articles au format CSV, déclenché sur l'url http://.../export/articles/csv
@@ -39,4 +45,15 @@ public class ExportArticleController {
         exportArticleCSV.exportAll(writer);
     }
 
+    @GetMapping("/articles/xlsx")
+    public void articlesXlsx(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // positionne de metadata sur la réponse afin d'informer le navigateur que la réponse correspond à un fichier téléchargeable.
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
+
+        // Le writter est un objet provenant de la response dans lequel on va pouvoir écrire pour générer le contenu de l'export CSV.
+        OutputStream outputStream = response.getOutputStream();
+
+        exportArticleXlsx.exportAll(outputStream);
+    }
 }
