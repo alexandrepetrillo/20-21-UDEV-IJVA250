@@ -1,22 +1,22 @@
 package com.example.demo.service.export;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.time.LocalDate;
-import java.util.List;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+        import java.io.IOException;
+        import java.io.OutputStream;
+        import java.time.LocalDate;
+        import java.util.List;
+        import org.apache.poi.ss.usermodel.Cell;
+        import org.apache.poi.ss.usermodel.CellStyle;
+        import org.apache.poi.ss.usermodel.Font;
+        import org.apache.poi.ss.usermodel.IndexedColors;
+        import org.apache.poi.ss.usermodel.Row;
+        import org.apache.poi.ss.usermodel.Sheet;
+        import org.apache.poi.ss.usermodel.Workbook;
+        import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.ClientDto;
-import com.example.demo.service.ClientService;
+        import com.example.demo.dto.ClientDto;
+        import com.example.demo.service.ClientService;
 
 @Service
 public class ExportClientExcelService {
@@ -63,7 +63,7 @@ public class ExportClientExcelService {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(client.getNom());
             row.createCell(1).setCellValue(client.getPrenom());
-            row.createCell(2).setCellValue(LocalDate.now().getYear() - client.getDateNaissance().getYear() - 1);
+            row.createCell(2).setCellValue(LocalDate.now().getYear() - client.getDateNaissance().getYear());
         }
 
         // Resize all columns to fit content size
