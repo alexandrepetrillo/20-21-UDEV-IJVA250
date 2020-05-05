@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.io.PrintWriter;
 import java.util.List;
 @Service
-public class ExportArticleCSV {
+public class ExportArticleCSVService {
 
     @Autowired
     private ArticleService articleService;
