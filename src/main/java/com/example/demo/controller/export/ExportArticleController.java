@@ -42,7 +42,6 @@ public class ExportArticleController {
         PrintWriter writer = response.getWriter();
 
         exportArticleCSVService.exportAll(writer);
-
 //        PrintWriter writer1 = new PrintWriter(System.out, true);
 //        exportArticleCSV.exportAll(writer1);
 //
@@ -51,7 +50,6 @@ public class ExportArticleController {
 //        writer2.close();
     }
 
-
     @GetMapping("/articles/xlsx")
     public void articlesXlsx(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/vnd.ms-excel");
@@ -59,5 +57,4 @@ public class ExportArticleController {
         OutputStream outputStream = response.getOutputStream();
         exportArticleExcelService.exportAll(outputStream);
     }
-
 }
