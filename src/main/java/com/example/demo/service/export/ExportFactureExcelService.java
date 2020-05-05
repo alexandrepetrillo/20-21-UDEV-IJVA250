@@ -52,7 +52,7 @@ public class ExportFactureExcelService {
 			cellValuePrenom.setCellValue(client.getPrenom());
 			Cell cellTitleAge = RowDateNaissance.createCell(0);
 			Cell cellValueAge = RowDateNaissance.createCell(1);
-			cellTitleAge.setCellValue("Age");
+			cellTitleAge.setCellValue("Date de naissance");
 			if (client.getDateNaissance() != null) {
 				cellValueAge.setCellValue(client.getDateNaissance().toString());
 			} else {
@@ -75,9 +75,6 @@ public class ExportFactureExcelService {
 					Font headerFont = workbook.createFont();
 					headerFont.setBold(true);
 
-//					((CellStyle) cellDesig).setAlignment(HorizontalAlignment.CENTER);
-//					((CellStyle) cellQuant).setAlignment(HorizontalAlignment.CENTER);
-//					((CellStyle) cellPrix).setAlignment(HorizontalAlignment.CENTER);
 					for (int i = 1; i <= ligneFacture.size(); i++) {
 						LigneFactureDto ligne = ligneFacture.get(i - 1);
 						Row rowLigne = sheetFacture.createRow(i);
