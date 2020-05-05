@@ -29,8 +29,7 @@ public class ExportClientCSVService {
         List<ClientDto> allClients = clientService.findAllClients();
         
         for (ClientDto client : allClients) {
-        	Period period = Period.between(LocalDate.now(), client.getDateNaissance());
-    		Integer clientAge = period.getYears();
+        	Integer clientAge = LocalDate.now().getYear() - client.getDateNaissance().getYear();        	
             writer.println(client.getNom() + ";" + client.getPrenom() + ";" + clientAge);
         }
     }

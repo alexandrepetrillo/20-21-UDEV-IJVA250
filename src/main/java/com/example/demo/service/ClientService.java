@@ -27,7 +27,7 @@ public class ClientService {
         return clientRepository
                 .findAll()
                 .stream()
-                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), null))
+                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), c.getDateNaissance()))
                 .collect(toList());
     }
 }

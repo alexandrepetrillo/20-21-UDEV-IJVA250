@@ -55,8 +55,7 @@ public class ExportClientExcelService {
         	Cell cellLastname = myRow.createCell(1);
         	cellLastname.setCellValue(client.nom);
         	
-            Period period = Period.between(LocalDate.now(), client.getDateNaissance());
-    		Integer clientAge = period.getYears();
+        	Integer clientAge = LocalDate.now().getYear() - client.getDateNaissance().getYear();
     		
         	Cell cellAge = myRow.createCell(2);
         	cellAge.setCellValue(clientAge);
