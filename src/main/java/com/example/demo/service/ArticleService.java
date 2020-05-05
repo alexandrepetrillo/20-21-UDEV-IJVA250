@@ -27,7 +27,7 @@ public class ArticleService {
         return articleRepository
                 .findAll()
                 .stream()
-                .map(a -> new ArticleDto(a.getId(), a.getLibelle(), a.getPrix()))
+                .map(a -> new ArticleDto(a.getId(), a.getLibelle(), a.getPrix(), a.getDescription()))
                 .collect(toList());
     }
 

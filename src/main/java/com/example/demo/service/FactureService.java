@@ -46,7 +46,7 @@ public class FactureService {
 
 
     private ClientDto clientDto(Client client) {
-        return new ClientDto(client.getId(), client.getNom(), client.getPrenom());
+        return new ClientDto(client.getId(), client.getNom(), client.getPrenom(), client.getDateNaissance());
     }
 
     private FactureDto factureDto(ClientDto clientDto, Facture f) {
@@ -59,6 +59,6 @@ public class FactureService {
 
     private LigneFactureDto ligneFactureDto(LigneFacture lf) {
         Article article = lf.getArticle();
-        return new LigneFactureDto(new ArticleDto(article.getId(), article.getLibelle(), article.getPrix()), lf.getQuantite());
+        return new LigneFactureDto(new ArticleDto(article.getId(), article.getLibelle(), article.getPrix(), article.getDescription()), lf.getQuantite());
     }
 }
