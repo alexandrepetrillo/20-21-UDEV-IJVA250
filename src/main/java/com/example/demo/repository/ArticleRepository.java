@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.dto.ArticleDto;
 import com.example.demo.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+	ArticleDto findByLibelleEquals(String libelle);
 }
