@@ -64,12 +64,12 @@ public class ExportFacturesXlsx {
 				for(FactureDto factureClient : facturesClient) {
 					ClientDto clientAssocie = factureClient.client;
 					
-					factureService.
+					//factureService.
 					
 				}
 				
 				
-				sheet = workbook.createSheet("Facture n°" + factureClient.id);
+				//sheet = workbook.createSheet("Facture n°" + factureClient.id);
 			}
 			
 		}
