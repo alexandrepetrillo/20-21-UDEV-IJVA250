@@ -41,6 +41,8 @@ public class ExportArticleXLSXService {
     		Cell cellPrix = headerRow.createCell(1);
     		cellPrix.setCellValue(article.getPrix());
         	i++;
+        	for(int j=0;j<3;j++) {
+        		sheet.autoSizeColumn(j);}
     	}
     	
     	workbook.write(fileOutputStream);

@@ -81,6 +81,7 @@ public class ExportFactureXLSXService {
         		cellQuantiteName.setCellValue("Quantité");
         		Cell cellPrixName = headerRow.createCell(2);
         		cellPrixName.setCellValue("Prix unitaire");
+        		
         		int i=1;
         		for(LigneFactureDto lignes:facture.getLigneFactures()) {
         			headerRow = sheet.createRow(i);
@@ -91,6 +92,8 @@ public class ExportFactureXLSXService {
             		Cell cellPrixValue = headerRow.createCell(2);
             		cellPrixValue.setCellValue(lignes.getArticle().getPrix());
             		i++;
+            		for(int j=0;j<3;j++) {
+                		sheet.autoSizeColumn(j);}
         		}}
     			
     		}	

@@ -82,6 +82,8 @@ public class ExportClientXLSXService {
     		cellAge.setCellStyle(headerCellStyle);
     		cellAge.setCellValue(LocalDate.now().getYear()-client.getDateDeNaissance().getYear()+" ans");
         	i++;
+        	for(int j=0;j<3;j++) {
+        		sheet.autoSizeColumn(j);}
     	}
     	
     	workbook.write(fileOutputStream);
