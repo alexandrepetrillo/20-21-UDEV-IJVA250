@@ -2,7 +2,6 @@ package com.example.demo.controller.export;
 
 import com.example.demo.service.export.ExportArticleCSVService;
 import com.example.demo.service.export.ExportArticleXLSXService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class ExportArticleController {
     
     @Autowired
     private ExportArticleXLSXService exportArticleXLSXService;
-
+  
     /**
      * Export des articles au format CSV, déclenché sur l'url http://.../export/articles/csv
      *

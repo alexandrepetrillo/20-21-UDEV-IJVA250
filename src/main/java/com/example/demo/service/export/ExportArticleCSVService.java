@@ -23,7 +23,7 @@ public class ExportArticleCSVService {
         for (ArticleDto article : articles) {
     		writer.println(article.libelle+";"+article.prix);
     	}
-        
+       
     }
 
 }
