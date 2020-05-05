@@ -27,8 +27,23 @@ public class ExportArticleExcelService {
         Sheet sheet = workbook.createSheet("Articles");
 
         Row headerRow = sheet.createRow(0);
-        Cell cell = headerRow.createCell(0);
-        cell.setCellValue("Coucou");
+        Cell cellLibelle = headerRow.createCell(0);
+        Cell cellPrix = headerRow.createCell(1);
+        cellLibelle.setCellValue("Libellé");
+        cellPrix.setCellValue("Prix");
+        
+        
+        Integer rowNumber = 1;
+        
+        for (Article article : allArticles) {
+        	
+        	Row dataRow = sheet.createRow(rowNumber);
+        	Cell cellDataLibelle = dataRow.createCell(0);
+            Cell cellDataPrix = dataRow.createCell(1);
+            cellDataLibelle.setCellValue(article.getLibelle());
+            cellDataPrix.setCellValue(article.getPrix());
+        	rowNumber ++;
+        }
 
         workbook.write(outputStream);
         workbook.close();
