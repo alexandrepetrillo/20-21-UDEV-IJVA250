@@ -27,7 +27,6 @@ public class ExportClientController {
     @Autowired
     private ExportClientExelService exportClientExelService;
 
-
     @GetMapping("/clients/csv")
     public void clientsCSV(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // positionne de metadata sur la réponse afin d'informer le navigateur que la réponse correspond à un fichier téléchargeable.
