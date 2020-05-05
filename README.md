@@ -12,7 +12,7 @@ Ouvrir le projet dans eclipse ou intellij.
 Démarrer l'application avec la classe 'main' : com.example.demo.DemoApplication
 
 ## IHM 1 : Server side templating
-Se connecter à la home page en accédant à l'url : http://localhost:8080/
+Se connecter à la home page en accédant à l'url : http://localhost:9092/
 Il s'agit d'une application Spring boot intégrant une petite base de données en mémoire.
 L'application simule la gestion d'une base d'articles de clients et de factures.
 
