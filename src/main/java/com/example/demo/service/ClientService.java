@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ClientDto;
+import com.example.demo.entity.Client;
 import com.example.demo.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -24,10 +26,17 @@ public class ClientService {
 
     public List<ClientDto> findAllClients() {
         // Transformation d'une liste de Client en ClientDto
-        return clientRepository
-                .findAll()
-                .stream()
-                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom()))
-                .collect(toList());
+        return clientRepository.findAll().stream()
+                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), c.getDateNaissance())).collect(toList());
+    }
+
+    public ClientDto findOneDtoById(Long id) {
+        Optional<Client> client = clientRepository.findById(id);
+       
+        return new ClientDto(client.get().getId(), client.get().getNom(), client.get().getPrenom(), client.get().getDateNaissance());
+    }
+
+    public Client findClientById(long id) {
+        return clientRepository.findById(id).get();
     }
 }
