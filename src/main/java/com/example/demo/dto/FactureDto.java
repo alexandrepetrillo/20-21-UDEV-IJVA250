@@ -14,5 +14,31 @@ public class FactureDto {
         this.id = id;
         this.client = client;
         this.ligneFactures = ligneFactures;
+        
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public ClientDto getClient() {
+		return client;
+	}
+
+	public void setClient(ClientDto client) {
+		this.client = client;
+	}
+
+	public List<LigneFactureDto> getLigneFactures() {
+		return ligneFactures;
+	}
+
+	public void setLigneFactures(List<LigneFactureDto> ligneFactures) {
+		this.ligneFactures = ligneFactures;
+	}
+    
 }
