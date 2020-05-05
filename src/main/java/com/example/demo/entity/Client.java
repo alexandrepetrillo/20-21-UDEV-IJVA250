@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * Entity représentant un client.
@@ -19,7 +20,7 @@ public class Client {
     @Column(nullable = false)
     private String nom;
 
-    @Column
+	@Column
     private LocalDate dateNaissance;
 
     public Long getId() {
@@ -53,5 +54,6 @@ public class Client {
     public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
+    
 
 }
