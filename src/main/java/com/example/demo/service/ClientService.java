@@ -9,6 +9,10 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.Year;
+
 /**
  * Service contenant les actions métiers liées aux clients.
  */
@@ -24,10 +28,11 @@ public class ClientService {
 
     public List<ClientDto> findAllClients() {
         // Transformation d'une liste de Client en ClientDto
+    	
         return clientRepository
                 .findAll()
                 .stream()
-                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom()))
+                .map(c -> new ClientDto(c.getId(), c.getNom(), c.getPrenom(), Period.between(c.getDateNaissance(), LocalDate.now()).getYears()))
                 .collect(toList());
     }
 }
