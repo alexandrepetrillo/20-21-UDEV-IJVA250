@@ -21,6 +21,7 @@ public class ExportArticleCSVService {
         List<Article> allArticles = articleRepository.findAll();
         for (Article article : allArticles) {
             writer.println(article.getLibelle() + ";" + article.getPrix());
+
         }
     }
 
