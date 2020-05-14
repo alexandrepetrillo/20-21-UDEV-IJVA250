@@ -2,6 +2,8 @@ package com.example.demo.controller.export;
 
 import com.example.demo.service.export.ExportArticleCSVService;
 import com.example.demo.service.export.ExportArticleExcelService;
+import com.example.demo.service.export.ExportArticlePDFService;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,9 @@ public class ExportArticleController {
 
     @Autowired
     private ExportArticleExcelService exportArticleExcelService;
+
+    @Autowired
+    private ExportArticlePDFService exportArticlePDFService;
 
     /**
      * Export des articles au format CSV, déclenché sur l'url http://.../export/articles/csv
@@ -58,6 +63,14 @@ public class ExportArticleController {
         response.setHeader("Content-Disposition", "attachment; filename=\"export-articles.xlsx\"");
         OutputStream outputStream = response.getOutputStream();
         exportArticleExcelService.exportAll(outputStream);
+    }
+
+    @GetMapping("/articles/pdf")
+    public void articlesPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, DocumentException {
+        response.setContentType("application/pdf");
+        response.setHeader("Content-disposition", "attachement; filename=\"export-articles.pdf\"");
+        OutputStream outputStream = response.getOutputStream();
+        exportArticlePDFService.exportAll(outputStream);
     }
 
 }
